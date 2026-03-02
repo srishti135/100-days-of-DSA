@@ -13,7 +13,6 @@ int main() {
 
     count = 0;
 
-    // Check every subarray a[i] to a[j]
     for (i = 0; i < n; i++) {
         sum = 0;
         for (j = i; j < n; j++) {
