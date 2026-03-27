@@ -1,38 +1,64 @@
 #include <stdio.h>
-#define MAX 100
-
+#define MAX 10
 int stack[MAX], top = -1;
 
-void push(int val) {
-    stack[++top] = val;
+void push(int x)
+{
+    if (top == MAX - 1)
+    {
+        printf("Stack overflow");
+        return;
+    }
+    top++;
+    stack[top] = x;
 }
-
-void pop() {
+void pop()
+{
     if (top == -1)
-        printf("Stack Underflow\n");
-    else
-        printf("%d\n", stack[top--]);
+    {
+        printf("Stack underflow");
+        return;
+    }
+    printf("Popped Element: %d\n", stack[top]);
+    top--;
 }
-
-void display() {
+void display()
+{
+    if (top == -1)
+    {
+        printf("Stack underflow");
+        return;
+    }
+    printf("Stack elements:");
     for (int i = top; i >= 0; i--)
-        printf("%d ", stack[i]);
-    printf("\n");
+    {
+        printf("%d\n", stack[i]);
+    }
 }
+int main()
+{
+    int n, choice, value;
 
-int main() {
-    int n, op, val;
     scanf("%d", &n);
-    while (n--) {
-        scanf("%d", &op);
-        if (op == 1) {
-            scanf("%d", &val);
-            push(val);
-        } else if (op == 2) {
+
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &choice);
+
+        if (choice == 1)
+        {
+            scanf("%d", &value);
+            push(value);
+        }
+        else if (choice == 2)
+        {
             pop();
-        } else {
+        }
+        else if (choice == 3)
+        {
             display();
         }
     }
+
     return 0;
 }
